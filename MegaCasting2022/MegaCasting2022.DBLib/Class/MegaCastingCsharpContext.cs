@@ -18,11 +18,16 @@ namespace MegaCasting2022.DBLib.Class
 
         public virtual DbSet<Activity> Activities { get; set; } = null!;
         public virtual DbSet<ActivityArtist> ActivityArtists { get; set; } = null!;
+        public virtual DbSet<ActivityDomain> ActivityDomains { get; set; } = null!;
+        public virtual DbSet<Advice> Advices { get; set; } = null!;
         public virtual DbSet<Artist> Artists { get; set; } = null!;
+        public virtual DbSet<Civility> Civilities { get; set; } = null!;
         public virtual DbSet<Client> Clients { get; set; } = null!;
         public virtual DbSet<ContractType> ContractTypes { get; set; } = null!;
+        public virtual DbSet<DiffusionPartner> DiffusionPartners { get; set; } = null!;
+        public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Offer> Offers { get; set; } = null!;
-        public virtual DbSet<Partner> Partners { get; set; } = null!;
+        public virtual DbSet<Pack> Packs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,6 +70,32 @@ namespace MegaCasting2022.DBLib.Class
                     .HasConstraintName("FK_ActivityArtist_Artist");
             });
 
+            modelBuilder.Entity<ActivityDomain>(entity =>
+            {
+                entity.HasKey(e => e.Identifier);
+
+                entity.ToTable("ActivityDomain");
+
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.Description).HasColumnType("text");
+
+                entity.Property(e => e.Label).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Advice>(entity =>
+            {
+                entity.HasKey(e => e.Identifier);
+
+                entity.ToTable("Advice");
+
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.Content).HasMaxLength(500);
+
+                entity.Property(e => e.Label).HasMaxLength(250);
+            });
+
             modelBuilder.Entity<Artist>(entity =>
             {
                 entity.HasKey(e => e.Identifier);
@@ -76,23 +107,38 @@ namespace MegaCasting2022.DBLib.Class
                 entity.Property(e => e.Name).HasMaxLength(50);
             });
 
+            modelBuilder.Entity<Civility>(entity =>
+            {
+                entity.HasKey(e => e.Identifier);
+
+                entity.ToTable("Civility");
+
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.LabelLong).HasMaxLength(250);
+
+                entity.Property(e => e.LabelShort).HasMaxLength(250);
+            });
+
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.HasKey(e => e.Identifier);
 
                 entity.ToTable("Client");
 
-                entity.Property(e => e.AddressCity).HasMaxLength(50);
-
-                entity.Property(e => e.AddressComplement).HasMaxLength(50);
-
-                entity.Property(e => e.AddressRoad).HasMaxLength(50);
+                entity.Property(e => e.Address).HasMaxLength(50);
 
                 entity.Property(e => e.AddressZipCode).HasMaxLength(50);
 
+                entity.Property(e => e.City).HasMaxLength(50);
+
                 entity.Property(e => e.Description).HasMaxLength(3000);
 
+                entity.Property(e => e.Email).HasMaxLength(250);
+
                 entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.Property(e => e.Phone).HasMaxLength(50);
             });
 
             modelBuilder.Entity<ContractType>(entity =>
@@ -106,6 +152,40 @@ namespace MegaCasting2022.DBLib.Class
                 entity.Property(e => e.ShortName).HasMaxLength(5);
             });
 
+            modelBuilder.Entity<DiffusionPartner>(entity =>
+            {
+                entity.HasKey(e => e.Identifier);
+
+                entity.ToTable("DiffusionPartner");
+
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.Login).HasMaxLength(250);
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.Property(e => e.Password).HasMaxLength(250);
+
+                entity.Property(e => e.Phone).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Interview>(entity =>
+            {
+                entity.HasKey(e => e.Identifier);
+
+                entity.ToTable("Interview");
+
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.Label).HasMaxLength(250);
+
+                entity.Property(e => e.Url)
+                    .HasMaxLength(250)
+                    .HasColumnName("url");
+            });
+
             modelBuilder.Entity<Offer>(entity =>
             {
                 entity.HasKey(e => e.Identifier);
@@ -114,7 +194,11 @@ namespace MegaCasting2022.DBLib.Class
 
                 entity.Property(e => e.Description).HasMaxLength(3000);
 
-                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.Label).HasMaxLength(50);
+
+                entity.Property(e => e.Localisation).HasMaxLength(250);
+
+                entity.Property(e => e.Reference).HasMaxLength(250);
 
                 entity.HasOne(d => d.IdentifierClientNavigation)
                     .WithMany(p => p.Offers)
@@ -129,13 +213,15 @@ namespace MegaCasting2022.DBLib.Class
                     .HasConstraintName("FK_Offer_ContractType");
             });
 
-            modelBuilder.Entity<Partner>(entity =>
+            modelBuilder.Entity<Pack>(entity =>
             {
                 entity.HasKey(e => e.Identifier);
 
-                entity.ToTable("Partner");
+                entity.ToTable("Pack");
 
-                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.Identifier).ValueGeneratedNever();
+
+                entity.Property(e => e.Label).HasMaxLength(250);
             });
 
             OnModelCreatingPartial(modelBuilder);

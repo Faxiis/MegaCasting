@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="MegaCasting.WPFClient.Views.OfferView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MegaCasting.WPFClient.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Les offres de casting"></TextBlock>
+            <DataGrid
+                     Height="250"
+                     Name="Datagrid1"
+                     Background="Beige" 
+                     ItemsSource="{Binding Offers}"
+                     SelectedItem="{Binding SelectedOffer}"
+                     DisplayMemberPath="Name"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Label}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Date de publication" Binding="{Binding ParutionDateTime}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Référence" Binding="{Binding Reference}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Date du début de l'offre" Binding="{Binding OfferDateTime}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Localisation" Binding="{Binding Localisation}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Type de contrat" Binding="{Binding IndentifierContractTypeNavigation.ShortName}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Client" Binding="{Binding IdentifierClientNavigation.Name}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Domaine" Binding="{Binding IdentifierActivityDomain}" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <GroupBox Height="75" Header="Offres :" Visibility="{Binding SelectedOffer, Converter={StaticResource _SharedObjectToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Text="{Binding SelectedOffer.Label}"></TextBox>
+                    <Label Content="Description" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Text="{Binding SelectedOffer.Description}"></TextBox>
+                    <Label Content="Référence" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Text="{Binding SelectedOffer.Reference}"></TextBox>
+                    <Label Content="Localisation" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Text="{Binding SelectedOffer.Localisation}"></TextBox>
+                    <Label Content="Date de publication" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Text="{Binding SelectedOffer.ParutionDateTime}"></TextBox>
+                    <Button x:Name="SaveOffer" Click="SaveOffer_Click" Content="Sauvegarder" Margin="5"></Button>
+                    <Button x:Name="DeleteOffer" Click="DeleteOffer_Click" Content="Supprimer" Margin="5"></Button>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <Label Content="Nom"/>
+                <TextBox Width="100" x:Name="Nom"></TextBox>
+                <Label Content="Description"/>
+                <TextBox Width="100" x:Name="Description"></TextBox>
+                <Label Content="Date de publication"/>
+                <DatePicker Width="100" x:Name="ParutionDateTime"></DatePicker>
+                <Label Content="Référence"/>
+                <TextBox Width="100" x:Name="Reference"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Content="Date du début de l'offre"/>
+                <DatePicker Width="100" x:Name="StartDate"></DatePicker>
+                <Label Content="Localisation"/>
+                <TextBox Width="100" x:Name="Localisation"></TextBox>
+                <Label Content="Type de contrat"></Label>
+                <ComboBox Width="100"
+                          ItemsSource="{Binding ContractTypes}"
+                          DisplayMemberPath="ShortName"
+                          SelectedValue="{Binding SelectedContractType.Identifier}"
+                          x:Name="ContractType">
+                </ComboBox>
+                <Label Content="Domaine d'activité"></Label>
+                <ComboBox Width="100"
+                          ItemsSource="{Binding ActivityDomains}"
+                          DisplayMemberPath="Label"
+                          SelectedValue="{Binding SelectedActivityDomain.Identifier}"
+                          x:Name="ActivityDomain"></ComboBox>
+                <Label Content="Client"></Label>
+                <ComboBox Width="100"
+                          ItemsSource="{Binding Clients}"
+                          DisplayMemberPath="Name"
+                          SelectedValue="{Binding SelectedClient.Identifier}"
+                          x:Name="Client"></ComboBox>
+            </StackPanel>
+            <Button x:Name="AddOffer" Click="AddOffer_Click" Content="Ajouter l'offre" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

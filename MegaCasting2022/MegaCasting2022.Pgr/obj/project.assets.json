@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net6.0-windows7.0": {
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -1877,7 +1877,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net6.0-windows7.0": [
       "MegaCasting2022.DBLib >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.11",
@@ -1906,15 +1906,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net6.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "projectReferences": {
             "C:\\Users\\antho\\OneDrive\\Documents\\Cours BTS\\Deuxième année\\C#\\MegaCasting2022\\MegaCasting2022.DBLib\\MegaCasting2022.DBLib.csproj": {
               "projectPath": "C:\\Users\\antho\\OneDrive\\Documents\\Cours BTS\\Deuxième année\\C#\\MegaCasting2022\\MegaCasting2022.DBLib\\MegaCasting2022.DBLib.csproj"
@@ -1929,8 +1929,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

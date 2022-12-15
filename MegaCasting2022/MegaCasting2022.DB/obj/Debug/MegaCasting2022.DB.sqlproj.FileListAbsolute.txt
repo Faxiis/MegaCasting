@@ -1,0 +1,6 @@
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\bin\Debug\MegaCasting2022.DB.dacpac
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\bin\Debug\MegaCasting2022.DB.dll
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\bin\Debug\MegaCasting2022.DB.pdb
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\obj\Debug\MegaCasting2022.DB.sqlproj.AssemblyReference.cache
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\obj\Debug\MegaCasting2022.DB.dll
+C:\Users\antho\OneDrive\Documents\Cours BTS\Deuxième année\C#\MegaCasting2022\MegaCasting2022.DB\obj\Debug\MegaCasting2022.DB.pdb

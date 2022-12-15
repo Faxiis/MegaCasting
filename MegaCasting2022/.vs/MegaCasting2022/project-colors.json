@@ -20,7 +20,27 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Fichiers divers",
       "ColorIndex": -1
+    },
+    "b10bb27d-98a1-4d2d-ba7e-37fc600e86db": {
+      "ProjectGuid": "b10bb27d-98a1-4d2d-ba7e-37fc600e86db",
+      "DisplayName": "MegaCasting2022.WPF",
+      "ColorIndex": 3
+    },
+    "91b45f34-8788-49c6-b8c5-e9e95ad376e9": {
+      "ProjectGuid": "91b45f34-8788-49c6-b8c5-e9e95ad376e9",
+      "DisplayName": "MegaCasting2022.DB",
+      "ColorIndex": 4
+    },
+    "262e4633-6802-4103-8fa4-0e2d9cf31db8": {
+      "ProjectGuid": "262e4633-6802-4103-8fa4-0e2d9cf31db8",
+      "DisplayName": "MegaCasting.WPF",
+      "ColorIndex": 5
+    },
+    "9970f25f-5e7b-4ff9-a0e6-ca4f92494d23": {
+      "ProjectGuid": "9970f25f-5e7b-4ff9-a0e6-ca4f92494d23",
+      "DisplayName": "MegaCasting.WPFClient",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 7
 }
