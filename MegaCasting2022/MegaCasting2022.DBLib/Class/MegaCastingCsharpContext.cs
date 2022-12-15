@@ -154,11 +154,10 @@ namespace MegaCasting2022.DBLib.Class
 
             modelBuilder.Entity<DiffusionPartner>(entity =>
             {
-                entity.HasKey(e => e.Identifier);
+                entity.HasKey(e => e.Identifier)
+                    .HasName("PK_DiffusionPartner_1");
 
                 entity.ToTable("DiffusionPartner");
-
-                entity.Property(e => e.Identifier).ValueGeneratedNever();
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 

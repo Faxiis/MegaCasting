@@ -7,6 +7,77 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock TextAlignment="Center" HorizontalAlignment="Center" Text="Client" FontSize="30" />
+        <Grid>
+            <StackPanel>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Les Clients"></TextBlock>
+                <DataGrid
+                     Margin="15"
+                     Height="250"
+                     Name="DatagridClient"
+                     Background="Beige" 
+                     ItemsSource="{Binding Clients}"
+                     SelectedItem="{Binding SelectedClient}"
+                     DisplayMemberPath="Name"
+                     AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="100"/>
+                        <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" Width="100"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                        <DataGridTextColumn Header="Adresse" Binding="{Binding Address}" Width="150"/>
+                        <DataGridTextColumn Header="Code postal" Binding="{Binding AddressZipCode}" Width="150"/>
+                        <DataGridTextColumn Header="Ville" Binding="{Binding City}" Width="110"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="200"/>
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
+
+
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.Name}"></TextBox>
+                    <Label Content="Téléphone" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.Phone}"></TextBox>
+                    <Label Content="Email" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.Email}"></TextBox>
+                    <Label Content="Adresse" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.Address}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <Label Content="Code postal" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.AddressZipCode}"></TextBox>
+                    <Label Content="Ville" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.City}"></TextBox>
+                    <Label Content="Description" Style="{StaticResource LabelCustomStyle}"/>
+                    <TextBox Width="100" Text="{Binding SelectedClient.Description}"></TextBox>
+                    <Button Height="25" x:Name="SaveClient" Click="SaveClient_Click" Content="Sauvegarder" Margin="5"></Button>
+                    <Button Height="25" x:Name="DeleteClient" Click="DeleteClient_Click" Content="Supprimer" Margin="5"></Button>
+                </StackPanel>
+                
+
+
+                <TextBlock Background="DarkGray"></TextBlock>
+                <Label Content="Ajouter un client" HorizontalAlignment="Center"></Label>
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <Label Content="Nom"/>
+                    <TextBox Width="100" x:Name="Nom"></TextBox>
+                    <Label Content="Téléphone"/>
+                    <TextBox Width="100" x:Name="telephone"></TextBox>
+                    <Label Content="Email"/>
+                    <TextBox Width="100" x:Name="Email"></TextBox>
+                    <Label Content="Adresse"/>
+                    <TextBox Width="100" x:Name="Adresse"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <Label Content="Code postal"/>
+                    <TextBox Width="100" x:Name="CodePostal"></TextBox>
+                    <Label Content="Ville"/>
+                    <TextBox Width="100" x:Name="Ville"></TextBox>
+                    <Label Content="Description"/>
+                    <TextBox Width="100" x:Name="Description"></TextBox>
+                </StackPanel>
+                <Button x:Name="AddClient" Click="AddClient_Click" Content="Ajouter le client" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

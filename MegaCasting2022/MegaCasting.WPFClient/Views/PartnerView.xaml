@@ -7,6 +7,50 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock TextAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Partenaires"/>
+        <StackPanel>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Les Partenaires de diffusion"></TextBlock>
+            <DataGrid
+                     Margin="15"
+                     Height="250"
+                     Name="DatagridDiffusionPartner"
+                     Background="Beige" 
+                     ItemsSource="{Binding DiffusionPartners}"
+                     SelectedItem="{Binding SelectedDiffusionPartner}"
+                     DisplayMemberPath="Name"
+                     AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Téléphone" Binding="{Binding Phone}" Width="200"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+
+
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Name}"></TextBox>
+                <Label Content="Téléphone" Style="{StaticResource LabelCustomStyle}"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Phone}"></TextBox>
+                <Label Content="Email" Style="{StaticResource LabelCustomStyle}"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Email}"></TextBox>
+                <Button Height="25" x:Name="SaveDiffusionPartner" Click="SaveDiffusionPartner_Click" Content="Sauvegarder" Margin="5"></Button>
+                <Button Height="25" x:Name="DeleteDiffusionPartner" Click="DeleteDiffusionPartner_Click" Content="Supprimer" Margin="5"></Button>
+            </StackPanel>
+
+
+            <TextBlock Background="DarkGray"></TextBlock>
+            <Label Content="Ajouter un partenaire de diffusion" HorizontalAlignment="Center"></Label>
+            <StackPanel Orientation="Horizontal" Margin="25" >
+                <Label Content="Nom"/>
+                <TextBox Width="100" x:Name="Nom"></TextBox>
+                <Label Content="Téléphone"/>
+                <TextBox Width="100" x:Name="telephone"></TextBox>
+                <Label Content="Email"/>
+                <TextBox Width="100" x:Name="email"></TextBox>
+            </StackPanel>
+            <Button x:Name="AddDiffusionPartner" Click="AddDiffusionPartner_Click" Content="Ajouter le partenaire" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
+        </StackPanel>
     </Grid>
 </UserControl>
