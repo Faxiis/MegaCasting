@@ -69,9 +69,9 @@ namespace MegaCasting.WPFClient
             OfferView view = new OfferView();
 
             view.DataContext = offerViewModel; 
-
             this.DockPanelView.Children.Add(view);
         }
+
         private void ButtonPartner_Click(object sender, RoutedEventArgs e)
         {
             PartnerViewModel partnerViewModel = new PartnerViewModel(this.Entities);
@@ -89,7 +89,6 @@ namespace MegaCasting.WPFClient
             ClientView view = new ClientView();
 
             view.DataContext = clientViewModel;
-
             this.DockPanelView.Children.Add(view);
         }
         #endregion

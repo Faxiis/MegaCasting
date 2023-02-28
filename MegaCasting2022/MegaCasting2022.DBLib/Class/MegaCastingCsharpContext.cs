@@ -199,6 +199,12 @@ namespace MegaCasting2022.DBLib.Class
 
                 entity.Property(e => e.Reference).HasMaxLength(250);
 
+                entity.HasOne(d => d.IdentifierActivityDomainNavigation)
+                    .WithMany(p => p.Offers)
+                    .HasForeignKey(d => d.IdentifierActivityDomain)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Offer_ActivityDomain");
+
                 entity.HasOne(d => d.IdentifierClientNavigation)
                     .WithMany(p => p.Offers)
                     .HasForeignKey(d => d.IdentifierClient)

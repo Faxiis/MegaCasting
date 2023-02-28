@@ -70,10 +70,11 @@ namespace MegaCasting.WPFClient.Views
                     ParutionDateTime = ParutionDateTime.SelectedDate.Value,
                     Reference = Reference.Text,
                     OfferDateTime = StartDate.SelectedDate.Value,
+                    OfferEndDate = EndDate.SelectedDate.Value,
                     Localisation = Localisation.Text,
-                    IdentifierActivityDomain = ActivityDomain.SelectedIndex = +1,
-                    IdentifierClient = Client.SelectedIndex = +1,
-                    IndentifierContractType = ContractType.SelectedIndex = +1,
+                    IdentifierActivityDomain = ((ActivityDomain.SelectedItem as ActivityDomain)?.Identifier ?? 0),
+                    IdentifierClient = ((Client.SelectedItem as Client)?.Identifier ?? 0),
+                    IndentifierContractType = ((ContractType.SelectedItem as ContractType)?.Identifier ?? 0),
 
                 };
 
@@ -100,7 +101,8 @@ namespace MegaCasting.WPFClient.Views
                 var offers = context.Offers;
                 Datagrid1.ItemsSource = offers.ToList();
             }
-           
+
         }
     }
 }
+

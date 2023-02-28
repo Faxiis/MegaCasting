@@ -32,7 +32,7 @@
 
                 </DataGrid>
 
-
+                
                 <StackPanel Orientation="Horizontal" Margin="15">
                     <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
                     <TextBox Width="100" Text="{Binding SelectedClient.Name}"></TextBox>

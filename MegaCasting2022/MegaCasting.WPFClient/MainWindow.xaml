@@ -6,8 +6,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting.WPFClient"
-        xmlns:view="clr-namespace:MegaCasting.WPFClient.Views"
+        xmlns:view="clr-namespace:MegaCasting.WPFClient.Views"  
         mc:Ignorable="d"
+        WindowTitleBrush="#200838"
         Title="MegaCasting" Height="700" Width="1200" MinHeight="500" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,7 +19,7 @@
             <RowDefinition Height="70pt"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Background="Aqua" Grid.RowSpan="2">
+        <StackPanel Background="#200838" Grid.RowSpan="2">
             <Button Height="50" Name="ButtonHome" Foreground="BurlyWood" Click="ButtonHome_Click" Margin="5pt">
                 <StackPanel>
                     <!--<materialDesign:PackIcon Kind="Home"

@@ -5,7 +5,6 @@
         <Style.Setters>
             <Setter Property="Foreground" Value="Black" />
         </Style.Setters>
-        
+
     </Style>
-    
 </ResourceDictionary>

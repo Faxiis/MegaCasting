@@ -24,10 +24,11 @@
                     <DataGridTextColumn Header="Date de publication" Binding="{Binding ParutionDateTime}" Width="150"/>
                     <DataGridTextColumn Header="Référence" Binding="{Binding Reference}" Width="100"/>
                     <DataGridTextColumn Header="Date du début de l'offre" Binding="{Binding OfferDateTime}" Width="150"/>
+                    <DataGridTextColumn Header="Date de fin de l'offre" Binding="{Binding OfferEndDate}" Width="150"/>
                     <DataGridTextColumn Header="Localisation" Binding="{Binding Localisation}" Width="100"/>
                     <DataGridTextColumn Header="Type de contrat" Binding="{Binding IndentifierContractTypeNavigation.ShortName}" Width="100"/>
                     <DataGridTextColumn Header="Client" Binding="{Binding IdentifierClientNavigation.Name}" Width="100"/>
-                    <DataGridTextColumn Header="Domaine" Binding="{Binding IdentifierActivityDomain}" Width="100"/>
+                    <DataGridTextColumn Header="Domaine" Binding="{Binding IdentifierActivityDomainNavigation.Label}" Width="100"/>
                 </DataGrid.Columns>
 
                 
@@ -44,19 +45,19 @@
                 <Label Content="Localisation" Style="{StaticResource LabelCustomStyle}"/>
                 <TextBox Width="100" Text="{Binding SelectedOffer.Localisation}"></TextBox>
                 <Label Content="Date de publication" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Width="100" Text="{Binding SelectedOffer.ParutionDateTime}"></DatePicker>
+                <DatePicker Width="100" SelectedDate="{Binding SelectedOffer.ParutionDateTime}"></DatePicker>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="15">
                 <Label Content="Date de de début de l'offre" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Width="100" Height="25" Text="{Binding SelectedOffer.OfferDateTime}"></DatePicker>
-                <Label Height="25" Content="Date de de début de l'offre" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Height="25" Width="100" Text="{Binding SelectedOffer.OfferDateTime}"></DatePicker>
+                <DatePicker Width="100" Height="25" SelectedDate="{Binding SelectedOffer.OfferDateTime}"></DatePicker>
+                <Label Height="25" Content="Date de fin de l'offre" Style="{StaticResource LabelCustomStyle}"/>
+                <DatePicker Height="25" Width="100" SelectedDate="{Binding SelectedOffer.OfferEndDate}"></DatePicker>
                 <Label Height="25" Content="Contrat" Style="{StaticResource LabelCustomStyle}"/>
                 <ComboBox Height="25" 
                           x:Name="Contrat"
                           ItemsSource="{Binding ContractTypes}"
                           DisplayMemberPath="ShortName"
-                          SelectedValue="{Binding SelectedContractType.Identifier}"
+                          SelectedIndex="{Binding SelectedOffer.IndentifierContractType}"
                           >
 
                 </ComboBox>
@@ -65,7 +66,7 @@
                           x:Name="Domaine"
                           ItemsSource="{Binding ActivityDomains}"
                           DisplayMemberPath="Label"
-                          SelectedValue="{Binding SelectedActivityDomain.Identifier}"
+                          SelectedIndex="{Binding SelectedOffer.IdentifierActivityDomain, Mode=TwoWay}"
                           >
 
                 </ComboBox>
@@ -74,8 +75,7 @@
                           Height="25" 
                           ItemsSource="{Binding Clients}"
                           DisplayMemberPath="Name"
-                          SelectedValue="{Binding SelectedClient.Identifier}"
-                          
+                          SelectedIndex="{Binding SelectedOffer.IdentifierClient, Mode=TwoWay}"
                           >
 
                 </ComboBox>
@@ -95,10 +95,13 @@
                 <DatePicker Width="100" x:Name="ParutionDateTime"></DatePicker>
                 <Label Content="Référence"/>
                 <TextBox Width="100" x:Name="Reference"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="25">
                 <Label Content="Date du début de l'offre"/>
                 <DatePicker Width="100" x:Name="StartDate"></DatePicker>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="25">
+
+                <Label Content="Date de fin de l'offre"/>
+                <DatePicker Width="100" x:Name="EndDate"></DatePicker>
                 <Label Content="Localisation"/>
                 <TextBox Width="100" x:Name="Localisation"></TextBox>
                 <Label Content="Type de contrat"></Label>
