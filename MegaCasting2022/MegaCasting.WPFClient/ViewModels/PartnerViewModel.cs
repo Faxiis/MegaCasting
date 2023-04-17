@@ -10,13 +10,7 @@ namespace MegaCasting.WPFClient.ViewModels
 {
     public class PartnerViewModel : ViewModelBase
     {
-        public PartnerViewModel(MegaCastingCsharpContext megaCastingCsharpContext)
-            : base(megaCastingCsharpContext)
-        {
-            this.Entities.DiffusionPartners.ToList();
-            this.DiffusionPartners = this.Entities.DiffusionPartners.Local.ToObservableCollection();
-        }
-                    
+     
        
         private ObservableCollection<DiffusionPartner> _DiffusionPartners;
 
@@ -33,6 +27,43 @@ namespace MegaCasting.WPFClient.ViewModels
         {
             get { return _SelectedDiffusionPartner; }
             set { _SelectedDiffusionPartner = value; }
+        }
+
+        private DiffusionPartner _PartnerToAdd;
+
+        public DiffusionPartner PartnerToAdd
+        {
+            get { return _PartnerToAdd; }
+            set { _PartnerToAdd = value; }
+        }
+
+        public PartnerViewModel(MegaCastingCsharpContext megaCastingCsharpContext)
+    : base(megaCastingCsharpContext)
+        {
+            this.PartnerToAdd = new DiffusionPartner();
+            this.Entities.DiffusionPartners.ToList();
+            this.DiffusionPartners = this.Entities.DiffusionPartners.Local.ToObservableCollection();
+        }
+
+        /// <summary>
+        /// Ajout de Client
+        /// </summary>
+        public void Add()
+        {
+            //Ajout du Client
+            this.Entities.DiffusionPartners.Add(this.PartnerToAdd);
+            this.PartnerToAdd = new DiffusionPartner();
+            this.Entities.SaveChanges();
+        }
+
+        /// <summary>
+        /// Suppression du Client
+        /// </summary>
+        public void Delete()
+        {
+            //Suppression du Client
+            this.Entities.DiffusionPartners.Remove(this.SelectedDiffusionPartner);
+            this.Entities.SaveChanges();
         }
     }
 }

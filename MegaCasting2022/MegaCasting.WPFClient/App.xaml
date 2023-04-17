@@ -17,5 +17,6 @@
             <converter:ObjectToVisibilityConverter x:Key="_SharedObjectToVisibilityConverter" />
 
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>

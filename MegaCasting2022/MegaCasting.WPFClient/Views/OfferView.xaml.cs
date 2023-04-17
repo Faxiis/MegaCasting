@@ -54,13 +54,16 @@ namespace MegaCasting.WPFClient.Views
 
         private void SaveOffer_Click(object sender, RoutedEventArgs e)
         {
+            //Sauvegarde de l'offre qui à été modifié
             ((OfferViewModel)this.DataContext).Save();
         }
+
 
         private void AddOffer_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new MegaCastingCsharpContext())
             {
+
 
                 // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
                 var offer = new Offer
@@ -92,11 +95,20 @@ namespace MegaCasting.WPFClient.Views
         {
             using ( var context = new MegaCastingCsharpContext())
             {
+                if (Datagrid1.SelectedItem == null)
+                {
+                    MessageBox.Show("Aucune offre séléctionner");
+                    return;
+                }
+
+                //Récupération de l'offre a supprimer
                 Offer selecteOffer = (Offer)Datagrid1.SelectedItem;
                 Offer offerToDelete = context.Offers.Where(e => e.Identifier == selecteOffer.Identifier).FirstOrDefault();
+                //Suppression de l'offre
                 context.Offers.Remove(offerToDelete);
                 Datagrid1.Items.Refresh();
                 context.SaveChanges();
+                //Actualisation des offres de casting
                 Datagrid1.Items.Refresh();
                 var offers = context.Offers;
                 Datagrid1.ItemsSource = offers.ToList();

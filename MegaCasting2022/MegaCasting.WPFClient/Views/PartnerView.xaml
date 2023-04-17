@@ -46,13 +46,13 @@
             <Label Content="Ajouter un partenaire de diffusion" HorizontalAlignment="Center"></Label>
             <StackPanel Orientation="Horizontal" Margin="25" >
                 <Label Content="Nom"/>
-                <TextBox Width="100" x:Name="Nom"></TextBox>
+                <TextBox Width="100" x:Name="Name" Text="{Binding PartnerToAdd.Name}" TextChanged="Name_TextChanged"></TextBox>
                 <Label Content="Téléphone"/>
-                <TextBox Width="100" x:Name="telephone"></TextBox>
+                <TextBox Width="100" x:Name="Phone" Text="{Binding PartnerToAdd.Phone}" TextChanged="Phone_TextChanged"></TextBox>
                 <Label Content="Email"/>
-                <TextBox Width="100" x:Name="email"></TextBox>
+                <TextBox Width="100" x:Name="Email" Text="{Binding PartnerToAdd.Email}" TextChanged="Email_TextChanged"></TextBox>
             </StackPanel>
-            <Button x:Name="AddDiffusionPartner" Click="AddDiffusionPartner_Click" Content="Ajouter le partenaire" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
+            <Button x:Name="AddDiffusionPartner" Click="AddDiffusionPartner_Click" Content="Ajouter le partenaire" Width="200" Height="40" Margin="15" HorizontalAlignment="Left" IsEnabled="False"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

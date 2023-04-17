@@ -9,7 +9,13 @@
         xmlns:view="clr-namespace:MegaCasting.WPFClient.Views"  
         mc:Ignorable="d"
         WindowTitleBrush="#200838"
-        Title="MegaCasting" Height="700" Width="1200" MinHeight="500" MinWidth="800">
+        AllowsTransparency="True"
+        mah:ControlsHelper.CornerRadius="10"
+        Title="MegaCasting" Height="700" Width="1200" MinHeight="500" MinWidth="800"
+        BorderThickness="0"
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120pt"/>
@@ -20,30 +26,41 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Background="#200838" Grid.RowSpan="2">
-            <Button Height="50" Name="ButtonHome" Foreground="BurlyWood" Click="ButtonHome_Click" Margin="5pt">
+            <StackPanel.Resources >
+                <Style TargetType="Button">
+                    <Setter Property="Background"  Value="#200838" />
+                    <Setter Property="BorderBrush"  Value="#200838" />
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground"  Value="White" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Height="50" Name="ButtonHome" Click="ButtonHome_Click" Margin="5pt" >
                 <StackPanel>
                     <!--<materialDesign:PackIcon Kind="Home"
-                                             HorizontalAlignment="Center"
-                                             Width="40"
-                                             Height="40"/>-->
-                    <Label FontSize="12" FontWeight="Bold" Foreground="Black" Content="Accueil"/> 
+                                                 HorizontalAlignment="Center"
+                                                 Width="40"
+                                                 Height="40"/>-->
+                    <Label Content="Accueil"/>
                 </StackPanel>
             </Button>
+
             <Button Height="50" Name="ButtonOffer" Foreground="BurlyWood" Click="ButtonOffer_Click" Margin="5pt">
                 <StackPanel>
                     <!--<materialDesign:PackIcon Kind="Offer"
                                              HorizontalAlignment="Center"
                                              Width="40"
                                              Height="40" />-->
-                    <Label FontSize="12" FontWeight="Bold" Foreground="Black" Content="Offre"/>
+                    <Label Content="Offre"/>
                 </StackPanel>
             </Button>
-            <Button Height="50" Name="ButtonPartner" Foreground="BurlyWood" Click="ButtonPartner_Click" Margin="5pt">
-                <Label FontSize="12" FontWeight="Bold" Foreground="Black" Content="Partenaire"/>
+            <Button Height="50" x:Name="ButtonPartner"  Foreground="BurlyWood" Click="ButtonPartner_Click" Margin="5pt">
+                <Label  Content="Partenaire"/>
             </Button>
-            <Button Height="50" Name="ButtonClient" Foreground="BurlyWood" Click="ButtonClient_Click" Margin="5pt">
-                <Label FontSize="12" FontWeight="Bold" Foreground="Black" Content="Client"/>
+            <Button  Height="50" Name="ButtonClient" Foreground="BurlyWood" Click="ButtonClient_Click" Margin="5pt">
+                <Label  Content="Client"/>
             </Button>
+            
         </StackPanel>
 
         <DockPanel x:Name="DockPanelView"
@@ -53,5 +70,6 @@
         </DockPanel>
         
     </Grid>
+    
 </mah:MetroWindow>
                                             

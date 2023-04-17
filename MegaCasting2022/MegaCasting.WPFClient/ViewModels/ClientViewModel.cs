@@ -28,12 +28,38 @@ namespace MegaCasting.WPFClient.ViewModels
             set { _SelectedClient = value; }
         }
 
+        private Client _ClientToAdd;
+
+        public Client ClientToAdd
+        {
+            get { return _ClientToAdd; }
+            set { _ClientToAdd = value; }
+        }
+
         public ClientViewModel(MegaCastingCsharpContext megaCastingCsharpContext)
         : base(megaCastingCsharpContext)
         {
-
+            this.ClientToAdd = new Client();
             this.Entities.Clients.ToList();
             this.Clients = this.Entities.Clients.Local.ToObservableCollection();
+        }
+
+        public void Add()
+        {
+            //Ajout du Client
+            this.Entities.Clients.Add(this.ClientToAdd);
+            this.ClientToAdd = new Client();
+            this.Entities.SaveChanges();
+        }
+
+        /// <summary>
+        /// Suppression du Client
+        /// </summary>
+        public void Delete()
+        {
+            //Suppression du Client
+            this.Entities.Clients.Remove(this.SelectedClient);
+            this.Entities.SaveChanges();
         }
     }
 }

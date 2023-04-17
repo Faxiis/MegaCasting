@@ -3,8 +3,9 @@
 
     <Style x:Key="LabelCustomStyle" TargetType="Label">
         <Style.Setters>
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
         </Style.Setters>
-
     </Style>
+
+
 </ResourceDictionary>

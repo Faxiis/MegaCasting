@@ -52,50 +52,46 @@ namespace MegaCasting.WPFClient.Views
 
         private void SaveClient_Click(object sender, RoutedEventArgs e)
         {
+            //Sauvegarde du client modifié 
             ((ClientViewModel)this.DataContext).Save();
         }
 
-        private void AddClient_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new MegaCastingCsharpContext())
-            {
+        //Ajout du Client
+        private void AddClient_Click(object sender, RoutedEventArgs e) => ((ClientViewModel)this.DataContext).Add();
 
-                // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
-                var client = new Client
-                {
-                    Name = Nom.Text,
-                    Phone = telephone.Text,
-                    Email = Email.Text,
-                    Description = Description.Text,
-                    City = Ville.Text,
-                    Address = Adresse.Text,
-                    AddressZipCode = CodePostal.Text
-                };
-
-                // ajoutez l'objet offer à la base de données et actualisation datagrid
-                context.Clients.Add(client);
-                DatagridClient.Items.Refresh();
-                context.SaveChanges();
-                DatagridClient.Items.Refresh();
-                var clients = context.Clients;
-                DatagridClient.ItemsSource = clients.ToList();
-            }
-        }
-
+        //Suppression du Client
         private void DeleteClient_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new MegaCastingCsharpContext())
+            if (DatagridClient.SelectedItem == null)
             {
-                Client selectedClient = (Client)DatagridClient.SelectedItem;
-                Client clientToDelete = context.Clients.Where(e => e.Identifier == selectedClient.Identifier).FirstOrDefault();
-                context.Clients.Remove(clientToDelete);
-                DatagridClient.Items.Refresh();
-                context.SaveChanges();
-                DatagridClient.Items.Refresh();
-                var clients = context.Clients;
-                DatagridClient.ItemsSource = clients.ToList();
+                MessageBox.Show("Aucun client séléctionner");
+                return;
             }
-
+            ((ClientViewModel)this.DataContext).Delete();
         }
+
+        //Vérifi si les champs ne sont pas vide
+        private void Nom_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void telephone_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Email_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Adresse_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void CodePostal_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Ville_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Description_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+
+        //Vérifi si les champs ne sont pas vide
+        private void CheckAddButtonEnability()
+        {
+            this.AddClient.IsEnabled = (
+                !string.IsNullOrWhiteSpace(Nom.Text)
+                && !string.IsNullOrWhiteSpace(telephone.Text)
+                && !string.IsNullOrWhiteSpace(Email.Text)
+                && !string.IsNullOrWhiteSpace(Adresse.Text)
+                && !string.IsNullOrWhiteSpace(CodePostal.Text)
+                && !string.IsNullOrWhiteSpace(Ville.Text)
+                && !string.IsNullOrWhiteSpace(Description.Text)
+                );
+        }
+
     }
 }

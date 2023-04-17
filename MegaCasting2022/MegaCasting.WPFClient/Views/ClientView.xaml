@@ -60,23 +60,23 @@
                 <Label Content="Ajouter un client" HorizontalAlignment="Center"></Label>
                 <StackPanel Orientation="Horizontal" Margin="15">
                     <Label Content="Nom"/>
-                    <TextBox Width="100" x:Name="Nom"></TextBox>
+                    <TextBox Width="100" x:Name="Nom" Text="{Binding ClientToAdd.Name}" TextChanged="Nom_TextChanged"></TextBox>
                     <Label Content="Téléphone"/>
-                    <TextBox Width="100" x:Name="telephone"></TextBox>
+                    <TextBox Width="100" x:Name="telephone" Text="{Binding ClientToAdd.Phone}" TextChanged="telephone_TextChanged"></TextBox>
                     <Label Content="Email"/>
-                    <TextBox Width="100" x:Name="Email"></TextBox>
+                    <TextBox Width="100" x:Name="Email" Text="{Binding ClientToAdd.Email}" TextChanged="Email_TextChanged"></TextBox>
                     <Label Content="Adresse"/>
-                    <TextBox Width="100" x:Name="Adresse"></TextBox>
+                    <TextBox Width="100" x:Name="Adresse" Text="{Binding ClientToAdd.Address}" TextChanged="Adresse_TextChanged"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="15">
                     <Label Content="Code postal"/>
-                    <TextBox Width="100" x:Name="CodePostal"></TextBox>
+                    <TextBox Width="100" x:Name="CodePostal" Text="{Binding ClientToAdd.AddressZipCode}" TextChanged="CodePostal_TextChanged"></TextBox>
                     <Label Content="Ville"/>
-                    <TextBox Width="100" x:Name="Ville"></TextBox>
+                    <TextBox Width="100" x:Name="Ville" Text="{Binding ClientToAdd.City}" TextChanged="Ville_TextChanged"></TextBox>
                     <Label Content="Description"/>
-                    <TextBox Width="100" x:Name="Description"></TextBox>
+                    <TextBox Width="100" x:Name="Description" Text="{Binding ClientToAdd.Description}" TextChanged="Description_TextChanged"></TextBox>
                 </StackPanel>
-                <Button x:Name="AddClient" Click="AddClient_Click" Content="Ajouter le client" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
+                <Button x:Name="AddClient" Click="AddClient_Click" Content="Ajouter le client" Width="200" Height="40" Margin="15" HorizontalAlignment="Left" IsEnabled="False"></Button>
             </StackPanel>
         </Grid>
     </Grid>

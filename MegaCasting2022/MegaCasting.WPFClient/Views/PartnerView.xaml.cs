@@ -50,48 +50,37 @@ namespace MegaCasting.WPFClient.Views
         }
 
         private void SaveDiffusionPartner_Click(object sender, RoutedEventArgs e)
-        {
+        {   //Sauvergarde du partenaire modifié
             ((PartnerViewModel)this.DataContext).Save();
         }
 
-        private void AddDiffusionPartner_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new MegaCastingCsharpContext())
-            {
+        //Ajout du partenaire
+        private void AddDiffusionPartner_Click(object sender, RoutedEventArgs e) => ((PartnerViewModel)this.DataContext).Add();
 
-                // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
-                var diffusionPartner = new DiffusionPartner
-                {
-                     Name = Nom.Text,
-                     Phone = telephone.Text,
-                     Email = email.Text,    
-
-                };
-
-                // ajoutez l'objet offer à la base de données et actualisation datagrid
-                context.DiffusionPartners.Add(diffusionPartner);
-                DatagridDiffusionPartner.Items.Refresh();
-                context.SaveChanges();
-                DatagridDiffusionPartner.Items.Refresh();
-                var diffusionpartners = context.DiffusionPartners;
-                DatagridDiffusionPartner.ItemsSource = diffusionpartners.ToList();
-            }
-        }
-
+        //Suppression du partenaire
         private void DeleteDiffusionPartner_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new MegaCastingCsharpContext())
+            if (DatagridDiffusionPartner.SelectedItem == null)
             {
-                DiffusionPartner selectedDiffusionPartner = (DiffusionPartner)DatagridDiffusionPartner.SelectedItem;
-                DiffusionPartner diffusionPartnerToDelete = context.DiffusionPartners.Where(e => e.Identifier == selectedDiffusionPartner.Identifier).FirstOrDefault();
-                context.DiffusionPartners.Remove(diffusionPartnerToDelete);
-                DatagridDiffusionPartner.Items.Refresh();
-                context.SaveChanges();
-                DatagridDiffusionPartner.Items.Refresh();
-                var diffusionPartner = context.DiffusionPartners;
-                DatagridDiffusionPartner.ItemsSource = diffusionPartner.ToList();
+                MessageBox.Show("Aucun partenaire séléctionner");
+                return;
             }
+            ((PartnerViewModel)this.DataContext).Delete();
+        }
 
+        //Vérifi si les champs ne sont pas vide
+        private void Email_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Phone_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+        private void Name_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
+
+        //Vérifi si les champs ne sont pas vide
+        private void CheckAddButtonEnability()
+        {
+            this.AddDiffusionPartner.IsEnabled =(
+                !string.IsNullOrWhiteSpace(Name.Text)
+                && !string.IsNullOrWhiteSpace(Phone.Text)
+                && !string.IsNullOrWhiteSpace(Email.Text)
+                );
         }
     }
 }
