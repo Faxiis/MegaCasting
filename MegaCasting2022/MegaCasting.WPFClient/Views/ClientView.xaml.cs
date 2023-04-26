@@ -30,14 +30,14 @@ namespace MegaCasting.WPFClient.Views
         /// <summary>
         /// Context
         /// </summary>
-        private MegaCastingCsharpContext _Entities;
+        private MegaCastingContext _Entities;
         #endregion
 
         #region Properties
         /// <summary>
         /// Obtient le context
         /// </summary>
-        public MegaCastingCsharpContext Entities
+        public MegaCastingContext Entities
         {
             get { return _Entities; }
             private set { _Entities = value; }
@@ -71,25 +71,25 @@ namespace MegaCasting.WPFClient.Views
         }
 
         //Vérifi si les champs ne sont pas vide
+        private void Prenom_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Nom_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void telephone_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Email_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Adresse_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void CodePostal_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Ville_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
-        private void Description_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
 
         //Vérifi si les champs ne sont pas vide
         private void CheckAddButtonEnability()
         {
             this.AddClient.IsEnabled = (
                 !string.IsNullOrWhiteSpace(Nom.Text)
+                && !string.IsNullOrWhiteSpace(Prenom.Text)
                 && !string.IsNullOrWhiteSpace(telephone.Text)
                 && !string.IsNullOrWhiteSpace(Email.Text)
                 && !string.IsNullOrWhiteSpace(Adresse.Text)
                 && !string.IsNullOrWhiteSpace(CodePostal.Text)
                 && !string.IsNullOrWhiteSpace(Ville.Text)
-                && !string.IsNullOrWhiteSpace(Description.Text)
                 );
         }
 

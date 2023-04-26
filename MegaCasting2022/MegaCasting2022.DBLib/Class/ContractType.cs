@@ -10,9 +10,9 @@ namespace MegaCasting2022.DBLib.Class
             Offers = new HashSet<Offer>();
         }
 
-        public long Identifier { get; set; }
-        public string Name { get; set; } = null!;
-        public string ShortName { get; set; } = null!;
+        public int Identifier { get; set; }
+        public string Label { get; set; } = null!;
+        public string ShortLabel { get; set; } = null!;
 
         public virtual ICollection<Offer> Offers { get; set; }
     }

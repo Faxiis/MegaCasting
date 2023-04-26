@@ -8,17 +8,20 @@ namespace MegaCasting2022.DBLib.Class
         public Client()
         {
             Offers = new HashSet<Offer>();
+            IdentifierClients = new HashSet<Pack>();
         }
 
-        public long Identifier { get; set; }
-        public string Name { get; set; } = null!;
+        public int Identifier { get; set; }
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string City { get; set; } = null!;
         public string Address { get; set; } = null!;
         public string AddressZipCode { get; set; } = null!;
-        public string City { get; set; } = null!;
-        public string Phone { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Phone { get; set; } = null!;
 
         public virtual ICollection<Offer> Offers { get; set; }
+
+        public virtual ICollection<Pack> IdentifierClients { get; set; }
     }
 }

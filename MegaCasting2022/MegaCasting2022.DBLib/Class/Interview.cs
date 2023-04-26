@@ -7,6 +7,6 @@ namespace MegaCasting2022.DBLib.Class
     {
         public int Identifier { get; set; }
         public string Label { get; set; } = null!;
-        public string? Url { get; set; }
+        public string Url { get; set; } = null!;
     }
 }

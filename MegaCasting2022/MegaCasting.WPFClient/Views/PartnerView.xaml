@@ -28,16 +28,16 @@
             </DataGrid>
 
 
-                <StackPanel Orientation="Horizontal" Margin="15">
-                    <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
-                    <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Name}"></TextBox>
-                    <Label Content="Téléphone" Style="{StaticResource LabelCustomStyle}"/>
-                    <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Phone}"></TextBox>
-                    <Label Content="Email" Style="{StaticResource LabelCustomStyle}"/>
-                    <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Email}"></TextBox>
-                    <Button Height="25" x:Name="SaveDiffusionPartner" Click="SaveDiffusionPartner_Click" Content="Sauvegarder" Margin="5"></Button>
-                    <Button Height="25" x:Name="DeleteDiffusionPartner" Click="DeleteDiffusionPartner_Click" Content="Supprimer" Margin="5"></Button>
-                </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="15">
+                <Label Content="Nom"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Name}"></TextBox>
+                <Label Content="Téléphone"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Phone}"></TextBox>
+                <Label Content="Email"/>
+                <TextBox Width="100" Text="{Binding SelectedDiffusionPartner.Email}"></TextBox>
+                <Button Height="25" x:Name="SaveDiffusionPartner" Click="SaveDiffusionPartner_Click" Content="Sauvegarder" Margin="5"></Button>
+                <Button Height="25" x:Name="DeleteDiffusionPartner" Click="DeleteDiffusionPartner_Click" Content="Supprimer" Margin="5"></Button>
+            </StackPanel>
 
 
 

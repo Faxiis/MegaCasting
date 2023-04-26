@@ -3,129 +3,165 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MegaCasting.WPFClient.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:local="clr-namespace:MegaCasting.WPFClient.Views" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" d:DesignWidth="800" Height="612">
     <Grid>
         <StackPanel>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Text="Les offres de casting"></TextBlock>
-            <DataGrid
-                     Margin="15"
-                     Height="250"
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="ShowAddOffer" Click="ShowAddOffer_Click" Width="200" Height="40" Margin="15" Style="{StaticResource actionButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus"/>
+                        <TextBlock Text="Ajouter une offre" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="ShowEditOffer" Click="ShowEditOffer_Click" IsEnabled="{Binding ElementName=Datagrid1, Path=SelectedItem.Count}" Width="200" Height="40" Margin="15" Style="{StaticResource actionButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="AccountEdit"/>
+                        <TextBlock Text="Modifier une offre" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="40" x:Name="DeleteOffer" Click="DeleteOffer_Click" Width="200" Margin="15" Style="{StaticResource actionButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Delete"/>
+                        <TextBlock Text="Supprimer une offre" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+            <DataGrid ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15"
+                     Height="265"
                      Name="Datagrid1"
-                     Background="Beige" 
                      ItemsSource="{Binding Offers}"
                      SelectedItem="{Binding SelectedOffer}"
                      DisplayMemberPath="Name"
-                AutoGenerateColumns="False">
+                AutoGenerateColumns="False"
+                Width="900">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Label}" Width="100"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="110"/>
                     <DataGridTextColumn Header="Date de publication" Binding="{Binding ParutionDateTime}" Width="150"/>
                     <DataGridTextColumn Header="Référence" Binding="{Binding Reference}" Width="100"/>
-                    <DataGridTextColumn Header="Date du début de l'offre" Binding="{Binding OfferDateTime}" Width="150"/>
+                    <DataGridTextColumn Header="Date du début de l'offre" Binding="{Binding OfferStartDate}" Width="150"/>
                     <DataGridTextColumn Header="Date de fin de l'offre" Binding="{Binding OfferEndDate}" Width="150"/>
                     <DataGridTextColumn Header="Localisation" Binding="{Binding Localisation}" Width="100"/>
-                    <DataGridTextColumn Header="Type de contrat" Binding="{Binding IndentifierContractTypeNavigation.ShortName}" Width="100"/>
-                    <DataGridTextColumn Header="Client" Binding="{Binding IdentifierClientNavigation.Name}" Width="100"/>
-                    <DataGridTextColumn Header="Domaine" Binding="{Binding IdentifierActivityDomainNavigation.Label}" Width="100"/>
+                    <DataGridTextColumn Header="Type de contrat" Binding="{Binding IdentifierContractTypeNavigation.ShortLabel}" Width="100"/>
+                    <DataGridTextColumn Header="Client" Binding="{Binding IdentifierClientNavigation.FirstName}" Width="100"/>
+                    <DataGridTextColumn Header="Métiers" Binding="{Binding Activities}" Width="100"/>
+                    <DataGridTextColumn Header="Métiers" Binding="{Binding Civilities}" Width="100"/>
                 </DataGrid.Columns>
-
-                
             </DataGrid>
 
-
-            <StackPanel Orientation="Horizontal" Margin="15">
-                <Label Content="Nom" Style="{StaticResource LabelCustomStyle}"/>
-                <TextBox Width="100" Text="{Binding SelectedOffer.Label}"></TextBox>
-                <Label Content="Description" Style="{StaticResource LabelCustomStyle}"/>
-                <TextBox Width="100" Text="{Binding SelectedOffer.Description}"></TextBox>
-                <Label Content="Référence" Style="{StaticResource LabelCustomStyle}"/>
-                <TextBox Width="100" Text="{Binding SelectedOffer.Reference}"></TextBox>
-                <Label Content="Localisation" Style="{StaticResource LabelCustomStyle}"/>
-                <TextBox Width="100" Text="{Binding SelectedOffer.Localisation}"></TextBox>
-                <Label Content="Date de publication" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Width="100" SelectedDate="{Binding SelectedOffer.ParutionDateTime}"></DatePicker>
+            <StackPanel x:Name="Edit" Visibility="Collapsed">
+                <TextBlock HorizontalAlignment="Center" Text="Modifier l'offre"></TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="82 0 0 0" >
+                    <Label Content="Nom :"/>
+                    <TextBox Width="100" Text="{Binding SelectedOffer.Label}"></TextBox>
+                    <Label Content="Description :" Margin="70 0 0 0"/>
+                    <TextBox Width="100" Text="{Binding SelectedOffer.Description}"></TextBox>
+                    <Label Content="Référence :" Margin="112 0 0 0"/>
+                    <TextBox Width="100" Text="{Binding SelectedOffer.Reference}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="46 5 0 0">
+                    <Label Content="Localisation :"/>
+                    <TextBox Width="100" Text="{Binding SelectedOffer.Localisation}"></TextBox>
+                    <Label Content="Date de publication :" Margin="27 5 0 0"/>
+                    <DatePicker Width="100" SelectedDate="{Binding SelectedOffer.ParutionDateTime}"></DatePicker>
+                    <Label Content="Date de de début de l'offre :" Margin="20 5 0 0"/>
+                    <DatePicker Width="100" Height="25" SelectedDate="{Binding SelectedOffer.OfferDateTime}" RenderTransformOrigin="0.489,0.79"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <Label Height="25" Content="Date de fin de l'offre :"/>
+                    <DatePicker Height="25" Width="100" SelectedDate="{Binding SelectedOffer.OfferEndDate}"></DatePicker>
+                    <Label Height="25" Content="Type de contrat :" Margin="48 5 0 0"/>
+                    <ComboBox Width="100"
+                              x:Name="Contrat"
+                              ItemsSource="{Binding ContractTypes}"
+                              DisplayMemberPath="Label"
+                              SelectedItem="{Binding SelectedOffer.IdentifierContractTypeNavigation}"
+                              >
+                    </ComboBox>
+                    <Label Height="25" Content="Client :" Margin="132 5 0 0"/>
+                    <ComboBox x:Name="Client1"
+                              Width="100"
+                              ItemsSource="{Binding Clients}"
+                              DisplayMemberPath="FirstName"
+                              SelectedItem="{Binding SelectedOffer.IdentifierClientNavigation, Mode=TwoWay}"
+                              >
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="68 5 0 0">
+                    <Label Content="Métier :"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Activities}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding SelectedOffer.IdentifierOffers}"
+                              x:Name="Activity"></ComboBox>
+                    <Label Content="Civilité :" Margin="102 5 0 0"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Civilities}"
+                              DisplayMemberPath="LongLabel"
+                              x:Name="Civility"
+                              SelectedItem="{Binding SelectedOffer.IdentifierCivilityNavigation}"
+                              SelectedIndex="0"></ComboBox>
+                </StackPanel>
+                <Button HorizontalAlignment="Left" x:Name="SaveOffer" Click="SaveOffer_Click" Width="200" Height="40" Margin="15" Content="Sauvegarder" Style="{StaticResource addButton }"></Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="15">
-                <Label Content="Date de de début de l'offre" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Width="100" Height="25" SelectedDate="{Binding SelectedOffer.OfferDateTime}"></DatePicker>
-                <Label Height="25" Content="Date de fin de l'offre" Style="{StaticResource LabelCustomStyle}"/>
-                <DatePicker Height="25" Width="100" SelectedDate="{Binding SelectedOffer.OfferEndDate}"></DatePicker>
-                <Label Height="25" Content="Contrat" Style="{StaticResource LabelCustomStyle}"/>
-                <ComboBox Height="25" 
-                          x:Name="Contrat"
-                          ItemsSource="{Binding ContractTypes}"
-                          DisplayMemberPath="ShortName"
-                          SelectedIndex="{Binding SelectedOffer.IndentifierContractType}"
-                          >
-
-                </ComboBox>
-                <Label Height="25" Content="Domaine" Style="{StaticResource LabelCustomStyle}"/>
-                <ComboBox Height="25" 
-                          x:Name="Domaine"
-                          ItemsSource="{Binding ActivityDomains}"
-                          DisplayMemberPath="Label"
-                          SelectedIndex="{Binding SelectedOffer.IdentifierActivityDomain, Mode=TwoWay}"
-                          >
-
-                </ComboBox>
-                <Label Height="25" Content="Client" Style="{StaticResource LabelCustomStyle}"/>
-                <ComboBox x:Name="Client1"
-                          Height="25" 
-                          ItemsSource="{Binding Clients}"
-                          DisplayMemberPath="Name"
-                          SelectedIndex="{Binding SelectedOffer.IdentifierClient, Mode=TwoWay}"
-                          >
-
-                </ComboBox>
-                <Button Height="25" x:Name="SaveOffer" Click="SaveOffer_Click" Content="Sauvegarder" Margin="5"></Button>
-                <Button Height="25" x:Name="DeleteOffer" Click="DeleteOffer_Click" Content="Supprimer" Margin="5"></Button>
+            
+            <StackPanel x:Name="AddOfferPanel" Visibility="Collapsed">
+                <Label Content="Ajouter une offre" HorizontalAlignment="Center"></Label>
+                <StackPanel Orientation="Horizontal" Margin="106 0 0 0" >
+                    <Label Content="Nom :"/>
+                    <TextBox Width="100" x:Name="Label"   Text="{Binding OfferToAdd.Label}"></TextBox>
+                    <Label Content="Description :" Margin="106 0 0 0"/>
+                    <TextBox Width="100" x:Name="Description" Text="{Binding OfferToAdd.Description}"></TextBox>
+                    <Label Content="Date de publication :" Margin="106 0 0 0"/>
+                    <DatePicker Width="100" x:Name="ParutionDateTime" SelectedDate="{Binding OfferToAdd.ParutionDateTime}"></DatePicker>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5" >
+                    <Label Content="Date du début de l'offre :"  />
+                    <DatePicker Width="100" x:Name="OfferStartDate" SelectedDate="{Binding OfferToAdd.OfferStartDate}"></DatePicker>
+                    <Label Content="Date de fin de l'offre :"  Margin="58 0 0 0"/>
+                    <DatePicker Width="100" x:Name="OfferEndDate" SelectedDate="{Binding OfferToAdd.OfferEndDate}"></DatePicker>
+                    <Label Content="Localisation :"  Margin="147 0 0 0"/>
+                    <TextBox Width="100" x:Name="Localisation" Text="{Binding OfferToAdd.Localisation}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                    <Label Content="Type de contrat :"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding ContractTypes}"
+                              DisplayMemberPath="Label"
+                              SelectedItem="{Binding OfferToAdd.IdentifierContractTypeNavigation}"
+                              x:Name="ContractType">
+                    </ComboBox>
+                    <Label Content="Client :" Margin="136 0 0 0"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Clients}"
+                              DisplayMemberPath="FirstName"
+                              SelectedItem="{Binding OfferToAdd.IdentifierClientNavigation}"
+                              x:Name="Client"></ComboBox>
+                    <Label Content="Métier :" Margin="175 0 0 0"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Activities}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding OfferToAdd.IdentifierOffers}"
+                              x:Name="Activities"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="97 5 0 0">
+                    <Label Content="Civilité :"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Civilities}"
+                              DisplayMemberPath="LongLabel"
+                              x:Name="Civilities"
+                              SelectedItem="{Binding OfferToAdd.IdentifierCivilityNavigation}"
+                              SelectedIndex="0"></ComboBox>
+                    <Label Content="Référence :" Margin="114 5 0 0"/>
+                    <TextBox Width="100" x:Name="Reference" Text="{Binding OfferToAdd.Reference}"></TextBox>
+                </StackPanel>
+                <Button x:Name="AddOffer" Click="AddOffer_Click" Content="Ajouter l'offre" Width="200" Height="40" Margin="15" HorizontalAlignment="Left" Style="{StaticResource addButton }"></Button>
             </StackPanel>
-
-
-            <TextBlock Background="DarkGray"></TextBlock>
-            <Label Content="Ajouter une offre" HorizontalAlignment="Center"></Label>
-            <StackPanel Orientation="Horizontal" Margin="25" >
-                <Label Content="Nom"/>
-                <TextBox Width="100" x:Name="Nom"></TextBox>
-                <Label Content="Description"/>
-                <TextBox Width="100" x:Name="Description"></TextBox>
-                <Label Content="Date de publication"/>
-                <DatePicker Width="100" x:Name="ParutionDateTime"></DatePicker>
-                <Label Content="Référence"/>
-                <TextBox Width="100" x:Name="Reference"></TextBox>
-                <Label Content="Date du début de l'offre"/>
-                <DatePicker Width="100" x:Name="StartDate"></DatePicker>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="25">
-
-                <Label Content="Date de fin de l'offre"/>
-                <DatePicker Width="100" x:Name="EndDate"></DatePicker>
-                <Label Content="Localisation"/>
-                <TextBox Width="100" x:Name="Localisation"></TextBox>
-                <Label Content="Type de contrat"></Label>
-                <ComboBox Width="100"
-                          ItemsSource="{Binding ContractTypes}"
-                          DisplayMemberPath="ShortName"
-                          SelectedValue="{Binding SelectedContractType.Identifier}"
-                          x:Name="ContractType">
-                </ComboBox>
-                <Label Content="Domaine d'activité"></Label>
-                <ComboBox Width="100"
-                          ItemsSource="{Binding ActivityDomains}"
-                          DisplayMemberPath="Label"
-                          SelectedValue="{Binding SelectedActivityDomain.Identifier}"
-                          x:Name="ActivityDomain"></ComboBox>
-                <Label Content="Client"></Label>
-                <ComboBox Width="100"
-                          ItemsSource="{Binding Clients}"
-                          DisplayMemberPath="Name"
-                          SelectedValue="{Binding SelectedClient.Identifier}"
-                          x:Name="Client"></ComboBox>
-            </StackPanel>
-            <Button x:Name="AddOffer" Click="AddOffer_Click" Content="Ajouter l'offre" Width="200" Height="40" Margin="15" HorizontalAlignment="Left"></Button>
         </StackPanel>
     </Grid>
-
 </UserControl>

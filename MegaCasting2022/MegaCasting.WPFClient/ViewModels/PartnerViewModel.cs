@@ -37,8 +37,8 @@ namespace MegaCasting.WPFClient.ViewModels
             set { _PartnerToAdd = value; }
         }
 
-        public PartnerViewModel(MegaCastingCsharpContext megaCastingCsharpContext)
-    : base(megaCastingCsharpContext)
+        public PartnerViewModel(MegaCastingContext megaCastingContext)
+    : base(megaCastingContext)
         {
             this.PartnerToAdd = new DiffusionPartner();
             this.Entities.DiffusionPartners.ToList();
@@ -46,25 +46,26 @@ namespace MegaCasting.WPFClient.ViewModels
         }
 
         /// <summary>
-        /// Ajout de Client
+        /// Ajout du partenaire
         /// </summary>
         public void Add()
         {
-            //Ajout du Client
+            //Ajout du partenaire
             this.Entities.DiffusionPartners.Add(this.PartnerToAdd);
             this.PartnerToAdd = new DiffusionPartner();
             this.Entities.SaveChanges();
         }
 
         /// <summary>
-        /// Suppression du Client
+        /// Suppression du partenaire
         /// </summary>
         public void Delete()
         {
-            //Suppression du Client
+            //Suppression du partenaire
             this.Entities.DiffusionPartners.Remove(this.SelectedDiffusionPartner);
             this.Entities.SaveChanges();
         }
+
     }
 }
 

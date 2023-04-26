@@ -17,14 +17,14 @@ namespace MegaCasting.WPFClient.ViewModels
         /// <summary>
         /// Context
         /// </summary>
-        private MegaCastingCsharpContext _Entities;
+        private MegaCastingContext _Entities;
         #endregion
 
         #region Properties
         /// <summary>
         /// Obtient le context
         /// </summary>
-        public MegaCastingCsharpContext Entities
+        public MegaCastingContext Entities
         {
             get { return _Entities; }
             private set { _Entities = value; }
@@ -36,10 +36,10 @@ namespace MegaCasting.WPFClient.ViewModels
         /// <summary>
         /// Constructeur par défaut
         /// </summary>
-        /// <param name="megaCastingCsharpContext">Contexte de l'application</param>
-        public ViewModelBase(MegaCastingCsharpContext megaCastingCsharpContext)
+        /// <param name="MegaCastingContext">Contexte de l'application</param>
+        public ViewModelBase(MegaCastingContext megaCastingContext)
         {
-            this._Entities = megaCastingCsharpContext;
+            this._Entities = megaCastingContext;
         }
         #endregion
 

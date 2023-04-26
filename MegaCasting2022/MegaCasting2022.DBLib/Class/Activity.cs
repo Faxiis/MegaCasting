@@ -7,12 +7,15 @@ namespace MegaCasting2022.DBLib.Class
     {
         public Activity()
         {
-            ActivityArtists = new HashSet<ActivityArtist>();
+            IdentifierActivities = new HashSet<Offer>();
         }
 
-        public long Identifier { get; set; }
+        public int Identifier { get; set; }
         public string Name { get; set; } = null!;
+        public int IdentifierActivityDomain { get; set; }
 
-        public virtual ICollection<ActivityArtist> ActivityArtists { get; set; }
+        public virtual ActivityDomain IdentifierActivityDomainNavigation { get; set; } = null!;
+
+        public virtual ICollection<Offer> IdentifierActivities { get; set; }
     }
 }

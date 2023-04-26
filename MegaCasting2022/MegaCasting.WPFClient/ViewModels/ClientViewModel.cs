@@ -36,8 +36,8 @@ namespace MegaCasting.WPFClient.ViewModels
             set { _ClientToAdd = value; }
         }
 
-        public ClientViewModel(MegaCastingCsharpContext megaCastingCsharpContext)
-        : base(megaCastingCsharpContext)
+        public ClientViewModel(MegaCastingContext megaCastingContext)
+        : base(megaCastingContext)
         {
             this.ClientToAdd = new Client();
             this.Entities.Clients.ToList();

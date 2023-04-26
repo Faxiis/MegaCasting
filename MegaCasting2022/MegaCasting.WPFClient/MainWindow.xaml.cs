@@ -22,21 +22,21 @@ namespace MegaCasting.WPFClient
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow
     {
 
         #region Attributes
         /// <summary>
         /// Context
         /// </summary>
-        private MegaCastingCsharpContext _Entities;
+        private MegaCastingContext _Entities;
         #endregion
 
         #region Properties
         /// <summary>
         /// Obtient le context
         /// </summary>
-        public MegaCastingCsharpContext Entities
+        public MegaCastingContext Entities
         {
             get { return _Entities; }
             private set { _Entities = value; }
@@ -52,8 +52,9 @@ namespace MegaCasting.WPFClient
         public MainWindow()
         {
             InitializeComponent();
-            this.Entities = new MegaCastingCsharpContext();
+            this.Entities = new MegaCastingContext();
         }
+
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
@@ -71,6 +72,7 @@ namespace MegaCasting.WPFClient
             view.DataContext = offerViewModel; 
             this.DockPanelView.Children.Add(view);
         }
+
 
         private void ButtonPartner_Click(object sender, RoutedEventArgs e)
         {

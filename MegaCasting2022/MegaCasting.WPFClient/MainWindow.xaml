@@ -1,4 +1,4 @@
-﻿<mah:MetroWindow x:Class="MegaCasting.WPFClient.MainWindow"
+﻿<Window x:Class="MegaCasting.WPFClient.MainWindow"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -6,70 +6,63 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MegaCasting.WPFClient"
-        xmlns:view="clr-namespace:MegaCasting.WPFClient.Views"  
-        mc:Ignorable="d"
-        WindowTitleBrush="#200838"
-        AllowsTransparency="True"
-        mah:ControlsHelper.CornerRadius="10"
-        Title="MegaCasting" Height="700" Width="1200" MinHeight="500" MinWidth="800"
-        BorderThickness="0"
-        WindowTransitionsEnabled="False"
-        WindowStartupLocation="CenterScreen">
+        xmlns:view="clr-namespace:MegaCasting.WPFClient.Views" xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d" Title="MegaCasting" WindowStartupLocation="CenterScreen"
+        Height="700" 
+        Width="1200" MinHeight="500" MinWidth="800">
+    <Border Background="#eff2f7" CornerRadius="30">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120pt"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70pt"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Background="#200838" Grid.RowSpan="2">
-            <StackPanel.Resources >
-                <Style TargetType="Button">
-                    <Setter Property="Background"  Value="#200838" />
-                    <Setter Property="BorderBrush"  Value="#200838" />
-                </Style>
-                <Style TargetType="Label">
-                    <Setter Property="Foreground"  Value="White" />
-                </Style>
-            </StackPanel.Resources>
-            <Button Height="50" Name="ButtonHome" Click="ButtonHome_Click" Margin="5pt" >
-                <StackPanel>
-                    <!--<materialDesign:PackIcon Kind="Home"
-                                                 HorizontalAlignment="Center"
-                                                 Width="40"
-                                                 Height="40"/>-->
-                    <Label Content="Accueil"/>
-                </StackPanel>
-            </Button>
+                <Button Margin="20 28 0 35" Name="ButtonHome" Click="ButtonHome_Click" Style="{StaticResource topButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Home"/>
+                    </StackPanel>
+                </Button>
 
-            <Button Height="50" Name="ButtonOffer" Foreground="BurlyWood" Click="ButtonOffer_Click" Margin="5pt">
-                <StackPanel>
-                    <!--<materialDesign:PackIcon Kind="Offer"
-                                             HorizontalAlignment="Center"
-                                             Width="40"
-                                             Height="40" />-->
-                    <Label Content="Offre"/>
-                </StackPanel>
-            </Button>
-            <Button Height="50" x:Name="ButtonPartner"  Foreground="BurlyWood" Click="ButtonPartner_Click" Margin="5pt">
-                <Label  Content="Partenaire"/>
-            </Button>
-            <Button  Height="50" Name="ButtonClient" Foreground="BurlyWood" Click="ButtonClient_Click" Margin="5pt">
-                <Label  Content="Client"/>
-            </Button>
+                <Border Grid.Row="1" Background="#2e2e2e" CornerRadius="0 50 0 7">
+                    <DockPanel>
+                        <StackPanel>
+                            <Button Name="ButtonOffer" Click="ButtonOffer_Click" Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Offer"/>
+                                    <TextBlock Text="Offres" Margin="10 0 0 0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ButtonPartner"  Click="ButtonPartner_Click" Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Handball"/>
+                                    <TextBlock Text="Partenaires" Margin="10 0 0 0"/>
+                                </StackPanel>
+
+                            </Button>
+                            <Button x:Name="ButtonClient" Click="ButtonClient_Click" Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Soccer"/>
+                                    <TextBlock Text="Clients" Margin="10 0 0 0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+                
+            </Grid>
             
-        </StackPanel>
-
-        <DockPanel x:Name="DockPanelView"
-                   Grid.Column="2"
-                   Grid.RowSpan="2">
-            <view:HomeView/>
-        </DockPanel>
-        
-    </Grid>
-    
-</mah:MetroWindow>
+            <DockPanel x:Name="DockPanelView"
+                       Grid.Column="2"
+                       Grid.RowSpan="2">
+                <view:HomeView/>
+            </DockPanel>
+                
+        </Grid>
+    </Border>
+</Window>
                                             

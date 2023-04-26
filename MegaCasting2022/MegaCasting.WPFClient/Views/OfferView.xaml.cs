@@ -32,14 +32,14 @@ namespace MegaCasting.WPFClient.Views
         /// <summary>
         /// Context
         /// </summary>
-        private MegaCastingCsharpContext _Entities;
+        private MegaCastingContext _Entities;
         #endregion
 
         #region Properties
         /// <summary>
         /// Obtient le context
         /// </summary>
-        public MegaCastingCsharpContext Entities
+        public MegaCastingContext Entities
         {
             get { return _Entities; }
             private set { _Entities = value; }
@@ -58,63 +58,74 @@ namespace MegaCasting.WPFClient.Views
             ((OfferViewModel)this.DataContext).Save();
         }
 
-
-        private void AddOffer_Click(object sender, RoutedEventArgs e)
+        private void ShowAddOffer_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new MegaCastingCsharpContext())
+            AddOfferPanel.Visibility = Visibility.Visible;
+            Edit.Visibility = Visibility.Collapsed;
+        }
+
+
+        private void AddOffer_Click(object sender, RoutedEventArgs e) => ((OfferViewModel)this.DataContext).Add();
+
+        private void ShowEditOffer_Click(object sender, RoutedEventArgs e)
+        {
+            if (Datagrid1.SelectedValue != null)
             {
-
-
-                // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
-                var offer = new Offer
-                {
-                    Label = Nom.Text,
-                    Description = Description.Text,
-                    ParutionDateTime = ParutionDateTime.SelectedDate.Value,
-                    Reference = Reference.Text,
-                    OfferDateTime = StartDate.SelectedDate.Value,
-                    OfferEndDate = EndDate.SelectedDate.Value,
-                    Localisation = Localisation.Text,
-                    IdentifierActivityDomain = ((ActivityDomain.SelectedItem as ActivityDomain)?.Identifier ?? 0),
-                    IdentifierClient = ((Client.SelectedItem as Client)?.Identifier ?? 0),
-                    IndentifierContractType = ((ContractType.SelectedItem as ContractType)?.Identifier ?? 0),
-
-                };
-
-                // ajoutez l'objet offer à la base de données et actualisation datagrid
-                context.Offers.Add(offer);
-                Datagrid1.Items.Refresh();
-                context.SaveChanges();
-                Datagrid1.Items.Refresh();
-                var offers = context.Offers;
-                Datagrid1.ItemsSource = offers.ToList();
+                Edit.Visibility = Visibility.Visible;
+                AddOfferPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez séléctionner une offre afin de la modifier");
             }
         }
+        
+
 
         private void DeleteOffer_Click(object sender, RoutedEventArgs e)
         {
-            using ( var context = new MegaCastingCsharpContext())
+            if (Datagrid1.SelectedItem == null)
             {
-                if (Datagrid1.SelectedItem == null)
-                {
-                    MessageBox.Show("Aucune offre séléctionner");
-                    return;
-                }
-
-                //Récupération de l'offre a supprimer
-                Offer selecteOffer = (Offer)Datagrid1.SelectedItem;
-                Offer offerToDelete = context.Offers.Where(e => e.Identifier == selecteOffer.Identifier).FirstOrDefault();
-                //Suppression de l'offre
-                context.Offers.Remove(offerToDelete);
-                Datagrid1.Items.Refresh();
-                context.SaveChanges();
-                //Actualisation des offres de casting
-                Datagrid1.Items.Refresh();
-                var offers = context.Offers;
-                Datagrid1.ItemsSource = offers.ToList();
+                MessageBox.Show("Aucune offre séléctionner");
+                return;
             }
-
+            ((OfferViewModel)this.DataContext).Delete();
         }
-    }
+
+
+
+    //private void AddOffer_Click(object sender, RoutedEventArgs e)
+    //{
+    //    using (var context = new MegaCastingContext())
+    //    {
+    //
+    //
+    //        // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
+    //        var offer = new Offer
+    //        {
+    //            Label = Nom.Text,
+    //            Description = Description.Text,
+    //            ParutionDateTime = ParutionDateTime.SelectedDate.Value,
+    //            Reference = Reference.Text,
+    //            OfferStartDate = StartDate.SelectedDate.Value,
+    //            OfferEndDate = EndDate.SelectedDate.Value,
+    //            Localisation = Localisation.Text,
+    //            IdentifierClient = ((Client.SelectedItem as Client)?.Identifier ?? 0),
+    //            IdentifierContractType = ((ContractType.SelectedItem as ContractType)?.Identifier ?? 0),
+    //
+    //        };
+    //
+    //        // ajoutez l'objet offer à la base de données et actualisation datagrid
+    //        context.Offers.Add(offer);
+    //        Datagrid1.Items.Refresh();
+    //        context.SaveChanges();
+    //        Datagrid1.Items.Refresh();
+    //        var offers = context.Offers;
+    //        Datagrid1.ItemsSource = offers.ToList();
+    //    }
+    //}
+
+
+}
 }
 

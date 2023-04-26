@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MegaCasting2022.DBLib.Migrations
 {
-    [DbContext(typeof(MegaCastingCsharpContext))]
+    [DbContext(typeof(MegaCastingContext))]
     [Migration("20221214082555_InitialMigration")]
     partial class InitialMigration
     {
