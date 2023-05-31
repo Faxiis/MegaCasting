@@ -53,7 +53,7 @@ namespace MegaCasting.WPFClient.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MegaCasting.WPFClient;V1.0.0.0;component/views/homeview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MegaCasting.WPFClient;component/views/homeview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\HomeView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

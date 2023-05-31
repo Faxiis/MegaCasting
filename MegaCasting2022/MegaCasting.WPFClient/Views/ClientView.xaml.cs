@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +51,8 @@ namespace MegaCasting.WPFClient.Views
             InitializeComponent();
         }
 
+        Boolean EmailValide = false;
+
         private void SaveClient_Click(object sender, RoutedEventArgs e)
         {
             //Sauvegarde du client modifié 
@@ -57,7 +60,17 @@ namespace MegaCasting.WPFClient.Views
         }
 
         //Ajout du Client
-        private void AddClient_Click(object sender, RoutedEventArgs e) => ((ClientViewModel)this.DataContext).Add();
+        private void AddClient_Click(object sender, RoutedEventArgs e)
+        {
+            if(EmailValide = true)
+            {
+                ((ClientViewModel)this.DataContext).Add();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez rentrer un email valide");
+            }
+        }
 
         //Suppression du Client
         private void DeleteClient_Click(object sender, RoutedEventArgs e)
@@ -67,10 +80,35 @@ namespace MegaCasting.WPFClient.Views
                 MessageBox.Show("Aucun client séléctionner");
                 return;
             }
-            ((ClientViewModel)this.DataContext).Delete();
+
+            MessageBoxResult result = MessageBox.Show("Voulez-vous vraiment supprimer cette offre ?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                ((ClientViewModel)this.DataContext).Delete();
+            }
         }
 
-        //Vérifi si les champs ne sont pas vide
+        private void ShowAddClient_Click(object sender, RoutedEventArgs e)
+        {
+            AddClientPanel.Visibility = Visibility.Visible;
+            Edit.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowEditClient_Click(object sender, RoutedEventArgs e)
+        {
+            if (DatagridClient.SelectedValue != null)
+            {
+                Edit.Visibility = Visibility.Visible;
+                AddClientPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez séléctionner une offre afin de la modifier");
+            }
+        }
+
+
+        //Vérifie si les champs ne sont pas vide
         private void Prenom_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Nom_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void telephone_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
@@ -79,7 +117,7 @@ namespace MegaCasting.WPFClient.Views
         private void CodePostal_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Ville_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
 
-        //Vérifi si les champs ne sont pas vide
+        //Vérifie si les champs ne sont pas vide
         private void CheckAddButtonEnability()
         {
             this.AddClient.IsEnabled = (
@@ -91,6 +129,40 @@ namespace MegaCasting.WPFClient.Views
                 && !string.IsNullOrWhiteSpace(CodePostal.Text)
                 && !string.IsNullOrWhiteSpace(Ville.Text)
                 );
+        }
+
+        private void Telephone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            /// Vérifie si le texte entré ne contient que des chiffres
+            if (!IsTextAllowed(e.Text))
+            {
+                /// Empêche la saisie de texte si elle ne contient pas que des chiffres
+                e.Handled = true;
+            }
+        }
+        private bool IsTextAllowed(string text)
+        {
+            /// Expression régulière pour valider uniquement les nombres
+            Regex regex = new Regex("[^0-9]+"); /// Seul des nombres
+
+            return !regex.IsMatch(text);
+        }
+
+        private void Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Email.Text.Contains("@") || string.IsNullOrEmpty(Email.Text))
+            {
+                /// Forcer le caractere @ 
+                EmailValide = true;
+            }
+            else
+            {
+                /// si le caractère "@" n'est pas présent dans l'email
+                /// Message erreur
+                EmailValide = false;
+                MessageBox.Show("L'email n'est pas valide");
+
+            }
         }
 
     }

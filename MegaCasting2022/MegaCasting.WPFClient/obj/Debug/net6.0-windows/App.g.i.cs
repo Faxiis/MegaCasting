@@ -60,7 +60,7 @@ namespace MegaCasting.WPFClient {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/MegaCasting.WPFClient;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MegaCasting.WPFClient;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -68,6 +68,25 @@ namespace MegaCasting.WPFClient.Views
             ((PartnerViewModel)this.DataContext).Delete();
         }
 
+        private void ShowAddPartner_Click(object sender, RoutedEventArgs e)
+        {
+            AddPartnerPanel.Visibility = Visibility.Visible;
+            Edit.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowEditPartner_Click(object sender, RoutedEventArgs e)
+        {
+            if (DatagridDiffusionPartner.SelectedValue != null)
+            {
+                Edit.Visibility = Visibility.Visible;
+                AddPartnerPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez séléctionner une offre afin de la modifier");
+            }
+        }
+
         //Vérifi si les champs ne sont pas vide
         private void Email_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();
         private void Phone_TextChanged(object sender, TextChangedEventArgs e) => this.CheckAddButtonEnability();

@@ -37,8 +37,9 @@
                      ItemsSource="{Binding Offers}"
                      SelectedItem="{Binding SelectedOffer}"
                      DisplayMemberPath="Name"
-                AutoGenerateColumns="False"
-                Width="900">
+                     AutoGenerateColumns="False"
+                     Width="900"
+                     IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Label}" Width="100"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="110"/>

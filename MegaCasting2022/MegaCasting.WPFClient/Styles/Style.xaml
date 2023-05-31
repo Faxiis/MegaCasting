@@ -108,4 +108,26 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="TextBox" x:Key="Textbox1">
+        <Setter Property="Padding" Value="7"/>
+        <Setter Property="Foreground" Value="#000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border"
+                    CornerRadius="5"
+                    BorderBrush="#8a8a8a"
+                    BorderThickness="1"
+                    Background="#fff"
+                    >
+                        <ScrollViewer x:Name="PART_ContentHost"
+                        Focusable="false"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

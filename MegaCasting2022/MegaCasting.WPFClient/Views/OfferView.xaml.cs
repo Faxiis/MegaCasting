@@ -64,7 +64,6 @@ namespace MegaCasting.WPFClient.Views
             Edit.Visibility = Visibility.Collapsed;
         }
 
-
         private void AddOffer_Click(object sender, RoutedEventArgs e) => ((OfferViewModel)this.DataContext).Add();
 
         private void ShowEditOffer_Click(object sender, RoutedEventArgs e)
@@ -80,8 +79,6 @@ namespace MegaCasting.WPFClient.Views
             }
         }
         
-
-
         private void DeleteOffer_Click(object sender, RoutedEventArgs e)
         {
             if (Datagrid1.SelectedItem == null)
@@ -93,39 +90,6 @@ namespace MegaCasting.WPFClient.Views
         }
 
 
-
-    //private void AddOffer_Click(object sender, RoutedEventArgs e)
-    //{
-    //    using (var context = new MegaCastingContext())
-    //    {
-    //
-    //
-    //        // créez un nouvel objet offer à partir des informations saisies par l'utilisateur
-    //        var offer = new Offer
-    //        {
-    //            Label = Nom.Text,
-    //            Description = Description.Text,
-    //            ParutionDateTime = ParutionDateTime.SelectedDate.Value,
-    //            Reference = Reference.Text,
-    //            OfferStartDate = StartDate.SelectedDate.Value,
-    //            OfferEndDate = EndDate.SelectedDate.Value,
-    //            Localisation = Localisation.Text,
-    //            IdentifierClient = ((Client.SelectedItem as Client)?.Identifier ?? 0),
-    //            IdentifierContractType = ((ContractType.SelectedItem as ContractType)?.Identifier ?? 0),
-    //
-    //        };
-    //
-    //        // ajoutez l'objet offer à la base de données et actualisation datagrid
-    //        context.Offers.Add(offer);
-    //        Datagrid1.Items.Refresh();
-    //        context.SaveChanges();
-    //        Datagrid1.Items.Refresh();
-    //        var offers = context.Offers;
-    //        Datagrid1.ItemsSource = offers.ToList();
-    //    }
-    //}
-
-
-}
+    }
 }
 
