@@ -22,6 +22,8 @@ namespace MegaCasting.WPFClient.ViewModels
         private Activity _SelectedActivity;
         private ObservableCollection<Client> _Clients;
         private Client _SelectedClient;
+        private ObservableCollection<Experience> _Experiences;
+        private Experience _SelectedExperience;
         private ObservableCollection<Civility> _Civilities;
         private Civility _SelectedCivility;
         #endregion
@@ -81,6 +83,18 @@ namespace MegaCasting.WPFClient.ViewModels
             set { _SelectedClient = value; }
         }
 
+        public ObservableCollection<Experience> Experiences
+        {
+            get { return _Experiences; }
+            set { _Experiences = value; }
+        }
+
+        public Experience SelectedExperience
+        {
+            get { return _SelectedExperience; }
+            set { _SelectedExperience = value; }
+        }
+
         public ObservableCollection<Civility> Civilities
         {
             get { return _Civilities; }
@@ -119,6 +133,11 @@ namespace MegaCasting.WPFClient.ViewModels
 
             this.Entities.Clients.ToList();
             this.Clients = this.Entities.Clients.Local.ToObservableCollection();
+
+            this.Entities.Experiences.ToList();
+            this.Experiences = this.Entities.Experiences.Local.ToObservableCollection();
+
+
         }
         #endregion
 

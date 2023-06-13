@@ -28,6 +28,7 @@ namespace MegaCasting.WPFClient.Views
         public DbSet<ContractType> ContractTypes { get; set; }
 
 
+
         #region Attributes
         /// <summary>
         /// Context
@@ -50,6 +51,8 @@ namespace MegaCasting.WPFClient.Views
         public OfferView()
         {
             InitializeComponent();
+
+            ExperienceFiltre.ItemsSource = Experiences;
         }
 
         private void SaveOffer_Click(object sender, RoutedEventArgs e)
@@ -87,6 +90,13 @@ namespace MegaCasting.WPFClient.Views
                 return;
             }
             ((OfferViewModel)this.DataContext).Delete();
+        }
+
+        private void ExperienceFiltre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedExperience = (sender as ComboBox).SelectedItem as Experience;
+
+            Datagrid1.ItemsSource = Offers.Where(o => o.Experience.Id == selectedExperience.Id);
         }
 
 

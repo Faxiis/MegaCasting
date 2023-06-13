@@ -25,15 +25,14 @@ namespace MegaCasting2022.DBLib.Class
         public int? ProfesionalLevel { get; set; }
         public bool? Sponsor { get; set; }
         public int? Status { get; set; }
+        public int? ExperienceId { get; set; }
 
+        public virtual Experience? Experience { get; set; }
         public virtual Client IdentifierClientNavigation { get; set; } = null!;
         public virtual ContractType IdentifierContractTypeNavigation { get; set; } = null!;
 
         public virtual ICollection<Activity> IdentifierOffers { get; set; }
         public virtual ICollection<User> IdentifierOffers1 { get; set; }
         public virtual ICollection<Civility> IdentifierOffersNavigation { get; set; }
-
-        public String Activities { get { return String.Join(", ", this.IdentifierOffers.Select<Activity, String>(x => x.Name)); } }
-        public String Civilities { get { return String.Join(", ", this.IdentifierOffersNavigation.Select<Civility, String>(x => x.ShortLabel)); } }
     }
 }

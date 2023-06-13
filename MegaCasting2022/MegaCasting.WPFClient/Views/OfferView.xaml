@@ -30,7 +30,13 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            
+            <Label Height="25" Content="Filtrer par niveau d'expérience :" Margin="132 5 0 0"/>
+            <ComboBox x:Name="ExperienceFiltre"
+                              Width="100"
+                              DisplayMemberPath="Label"
+                              SelectionChanged="ExperienceFiltre_SelectionChanged">
+                              >
+            </ComboBox>
             <DataGrid ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15"
                      Height="265"
                      Name="Datagrid1"
@@ -50,6 +56,7 @@
                     <DataGridTextColumn Header="Localisation" Binding="{Binding Localisation}" Width="100"/>
                     <DataGridTextColumn Header="Type de contrat" Binding="{Binding IdentifierContractTypeNavigation.ShortLabel}" Width="100"/>
                     <DataGridTextColumn Header="Client" Binding="{Binding IdentifierClientNavigation.FirstName}" Width="100"/>
+                    <DataGridTextColumn Header="Expérence" Binding="{Binding Experience.Label}" Width="100"/>
                     <DataGridTextColumn Header="Métiers" Binding="{Binding Activities}" Width="100"/>
                     <DataGridTextColumn Header="Métiers" Binding="{Binding Civilities}" Width="100"/>
                 </DataGrid.Columns>
@@ -107,6 +114,14 @@
                               x:Name="Civility"
                               SelectedItem="{Binding SelectedOffer.IdentifierCivilityNavigation}"
                               SelectedIndex="0"></ComboBox>
+                    <Label Height="25" Content="Niveau d'expérience :" Margin="132 5 0 0"/>
+                    <ComboBox x:Name="Experience1"
+                              Width="100"
+                              ItemsSource="{Binding Experiences}"
+                              DisplayMemberPath="Label"
+                              SelectedItem="{Binding SelectedOffer.Experience, Mode=TwoWay}"
+                              >
+                    </ComboBox>
                 </StackPanel>
                 <Button HorizontalAlignment="Left" x:Name="SaveOffer" Click="SaveOffer_Click" Width="200" Height="40" Margin="15" Content="Sauvegarder" Style="{StaticResource addButton }"></Button>
             </StackPanel>
@@ -157,6 +172,13 @@
                               DisplayMemberPath="LongLabel"
                               x:Name="Civilities"
                               SelectedItem="{Binding OfferToAdd.IdentifierCivilityNavigation}"
+                              SelectedIndex="0"></ComboBox>
+                    <Label Content="Niveau d'expérience :"></Label>
+                    <ComboBox Width="100"
+                              ItemsSource="{Binding Experiences}"
+                              DisplayMemberPath="Label"
+                              x:Name="Experiences"
+                              SelectedItem="{Binding OfferToAdd.Experience}"
                               SelectedIndex="0"></ComboBox>
                     <Label Content="Référence :" Margin="114 5 0 0"/>
                     <TextBox Width="100" x:Name="Reference" Text="{Binding OfferToAdd.Reference}"></TextBox>

@@ -24,6 +24,7 @@ namespace MegaCasting2022.DBLib.Class
         public virtual DbSet<ContractType> ContractTypes { get; set; } = null!;
         public virtual DbSet<DiffusionPartner> DiffusionPartners { get; set; } = null!;
         public virtual DbSet<DoctrineMigrationVersion> DoctrineMigrationVersions { get; set; } = null!;
+        public virtual DbSet<Experience> Experiences { get; set; } = null!;
         public virtual DbSet<Interview> Interviews { get; set; } = null!;
         public virtual DbSet<Offer> Offers { get; set; } = null!;
         public virtual DbSet<Pack> Packs { get; set; } = null!;
@@ -199,6 +200,17 @@ namespace MegaCasting2022.DBLib.Class
                 entity.Property(e => e.ExecutionTime).HasColumnName("execution_time");
             });
 
+            modelBuilder.Entity<Experience>(entity =>
+            {
+                entity.ToTable("experience");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Label)
+                    .HasMaxLength(255)
+                    .HasColumnName("label");
+            });
+
             modelBuilder.Entity<Interview>(entity =>
             {
                 entity.HasKey(e => e.Identifier)
@@ -216,11 +228,15 @@ namespace MegaCasting2022.DBLib.Class
                 entity.HasKey(e => e.Identifier)
                     .HasName("PK__Offers__821FB018170F03D4");
 
+                entity.HasIndex(e => e.ExperienceId, "IDX_DDEA011146E90E27");
+
                 entity.HasIndex(e => e.IdentifierClient, "IDX_DDEA011199AD3AB8");
 
                 entity.HasIndex(e => e.IdentifierContractType, "IDX_DDEA0111B0E4728C");
 
                 entity.Property(e => e.Description).HasMaxLength(3000);
+
+                entity.Property(e => e.ExperienceId).HasColumnName("experience_id");
 
                 entity.Property(e => e.Label).HasMaxLength(255);
 
@@ -239,6 +255,11 @@ namespace MegaCasting2022.DBLib.Class
                 entity.Property(e => e.Sponsor).HasColumnName("sponsor");
 
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.Experience)
+                    .WithMany(p => p.Offers)
+                    .HasForeignKey(d => d.ExperienceId)
+                    .HasConstraintName("FK_DDEA011146E90E27");
 
                 entity.HasOne(d => d.IdentifierClientNavigation)
                     .WithMany(p => p.Offers)
